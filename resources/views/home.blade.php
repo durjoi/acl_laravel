@@ -15,9 +15,17 @@
                     @endif
 
                     You are logged in!
+
+                    @role('developer')
+                      Developer
+                    @endrole
+
+
                 </div>
+
             </div>
         </div>
     </div>
 </div>
+
 @endsection

@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use App\Permission;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Gate;
 class PermissionsServiceProvider extends ServiceProvider
 {
     /**
@@ -35,12 +38,13 @@ class PermissionsServiceProvider extends ServiceProvider
         }
 
         //Blade directives
-        Blade::directive('role', function($role){
-          return "if(auth()->check() && auth()->user->hasRole({$role})): ";
+        Blade::directive('role', function ($role) {
+             return "<?php if(auth()->check() && auth()->user()->hasRole({$role})) : ?>"; //return this if statement inside php tag
         });
 
-        Blade::directive('endrole', function($role)) {
-          return "endif;";
-        }
+        Blade::directive('endrole', function ($role) {
+             return "<?php endif; ?>"; //return this endif statement inside php tag
+        });
+
     }
 }
